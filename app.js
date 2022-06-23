@@ -1,15 +1,13 @@
-const http  = require("http");
+const express  = require("express");
+const server = express();
 
-const server = http.createServer((req, res) => {
-    if(req.url === "/") {
-        res.write(`<h1>Hello from nodejs</h1>`);
-        console.log("User accessed.")
-    } else {
-        res.write(`<h1>You have entered this url : ${req.url}</h1>`);
-    }
-    res.end();
+server.get("/", (req, res) => {
+    console.log(req.url);
+    res.send("<h1>Hello from express</h1>");
 });
 
-server.listen(3000, () => {
+
+server.listen(3000, (err) => {
+    if (err) return console.log(err);
     console.log("The server is listening on port 3000");
 });
